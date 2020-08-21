@@ -3,4 +3,8 @@
 <category><pattern>Taynara Muren Dias</pattern><template>Seu CPF: 09494750926</template></category>
 
 
+        
+<category><pattern>Teste</pattern><template>Seu CPF: 123</template></category>
+
+
 </aiml>

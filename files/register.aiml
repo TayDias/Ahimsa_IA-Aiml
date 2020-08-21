@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml version="2.0">
-	<!-- insert your AIML categories here -->
 	
 	<topic name="CADASTRO">
 	    
@@ -51,9 +50,20 @@
                     <set name="topic">TERMINARCADASTRO</set>
                 </think>
                 
-                Ok, chegamos ao fim. Você confirma as informações abaixo para concluir o cadastro?<split/>
-                Nome Completo: <get name="nomecompleto"/>.<split/>
-                CPF: <get name="cpf"/>. 
+                Ok, chegamos ao fim!<break/>
+                Você confirma seus dados abaixo para concluir o cadastro?<break/><break/>
+                Nome Completo: <get name="nomecompleto"/>.<break/>
+                CPF: <get name="cpf"/>.
+                
+                <button>
+                    <text>Sim, as informações estão certas!</text>
+                    <postback>SIM</postback>
+                </button>
+                
+                <button>
+                    <text>Não, cancele o cadastro.</text>
+                    <postback>NAO</postback>
+                </button>
                 
             </template>
         </category>
@@ -73,7 +83,7 @@
             <pattern>Sim</pattern>
             <template>
                 Ok, concluimos seu cadastro. Digite seu nome completo para ver suas informações.
-                <!-- Chamar Api feita para cadastro na base ao invés de learnf -->
+                <!-- Chamar Api para cadastro na base ao invés de learnf -->
                 <learnf>
                     <category>
                         <pattern><eval><get name="nomecompleto"/></eval></pattern>
@@ -87,19 +97,33 @@
         </category>
         
         <category>
-            <pattern>Não</pattern>
+            <pattern>Nao</pattern>
             <template>
+                <think>
+                    <set name="topic">VOLTARCADASTRO</set>
+                </think>
                 Ok. Deseja corrigir seus dados fazendo o cadastro de novo?
+                <reply>
+                    <text>Sim</text>
+                    <postback>SIM</postback>
+                </reply>
+                <reply>
+                    <text>Não</text>
+                    <postback>NAO</postback>
+                </reply>
             </template>
         </category>
         
         <category>
-            <pattern>Nao</pattern>
-            <template><srai>Não</srai></template>
+            <pattern>Não</pattern>
+            <template><srai>Nao</srai></template>
         </category>
         
-        <category>
-            <that>_ corrigir seus dados fazendo o cadastro de novo</that>
+	</topic>
+	
+	<topic name="VOLTARCADASTRO">
+	    
+	    <category>
             <pattern>Sim</pattern>
             <template>
                 <think>
@@ -110,13 +134,24 @@
         </category>
         
         <category>
-            <that>_ corrigir seus dados fazendo o cadastro de novo</that>
-            <pattern>Não</pattern>
+            <pattern>Nao</pattern>
             <template>
                 <think>
                     <set name="topic">CADASTRO</set>
                 </think>
                 <srai>Cancelar</srai>
+            </template>
+        </category>
+        
+        <category>
+            <pattern>Não</pattern>
+            <template><srai>Nao</srai></template>
+        </category>
+        
+        <category>
+            <pattern>*</pattern>
+            <template>
+                Desculpe, não compreendi sua decisão. Por favor digite "sim" ou "não" para prosseguir.
             </template>
         </category>
         

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	
+	<category>
+	    <pattern>Hello</pattern>
+	    <template>Hello! I'am sorry, I do not speak English yet. It will come soon...</template>
+    </category>
+    
+    <category>
+        <pattern>Hi</pattern>
+        <template><srai>Hello</srai></template>
+    </category>
+    
+    <category>
+        <pattern>Do you speak English</pattern>
+        <template>I'am sorry, I do not speak English yet. It will come soon...</template>
+    </category>
+	
+</aiml>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+    
+	<!-- Requisitos atendidos por esta versão -->
+	
+	<!-- RF 210. O sistema deve permitir que os usuários solicitantes de atendimento 
+	permaneçam em anonimato caso desejem. -->
+	
+	<!-- RF 211. O sistema deve permitir que os usuários solicitantes de atendimento façam o 
+	credenciamento como participantes da rede de vulneráveis. -->
+	
+</aiml>

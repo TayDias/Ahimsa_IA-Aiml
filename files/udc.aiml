@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+    
+  <category>
+    <pattern>*</pattern>
+    <template>Desculpe, não compreendi o que disse.</template>
+  </category>
+  
+  <category>
+      <pattern>^ Oi ^</pattern>
+      <template>
+          <think>
+            <set name="topic">APRESENTACAO</set>
+          </think>
+          Olá, meu nome é Ahimsa. Qual é o seu?
+      </template>
+  </category>
+  
+  <category>
+    <pattern>Olá</pattern>
+    <template><srai>Oi</srai></template>
+  </category>
+  
+  <category>
+    <pattern>Ola</pattern>
+    <template><srai>Oi</srai></template>
+  </category>
+  
+</aiml>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+	
+	<topic name="APRESENTACAO">
+	    
+	    <category>
+	        <pattern>*</pattern>
+	        <template>
+	            <think>
+	                <set name="nome"><star/></set>
+	                <set name="topic">DECISAO</set>
+	            </think>
+	            Olá <star/>, você deseja se cadastrar na nossa comunidade? Sem pressões, você pode permanecer anônimo se desejar :)
+	        </template>
+        </category>
+        
+	</topic>
+	
+	<topic name="DECISAO">
+	    
+	    <category>
+	        <pattern>*</pattern>
+	        <template>
+	            Desculpe, não compreendi sua decisão. Por favor digite "sim" ou "não" para se cadastrar.
+	        </template>
+        </category>
+        
+        //Sim
+        <category>
+            <pattern>Sim</pattern>
+            <template>
+                <think>
+                    <set name="topic">CADASTRO</set>
+                </think>
+                Certo, vamos fazer o cadastro. Para parar você pode digitar "cancelar" a qualquer momento, Ok?
+            </template>
+        </category>
+        
+        <category>
+            <pattern>Ok</pattern>
+            <template><srai>Sim</srai></template>
+        </category>
+        
+        <category>
+            <pattern>Quero</pattern>
+            <template><srai>Sim</srai></template>
+        </category>
+        
+        //Não
+        <category>
+            <pattern>Não</pattern>
+            <template>
+                <think>
+                    <set name="topic">CONVERSA</set>
+                </think>
+                Tudo bem, vamos continuar conversando então :)
+            </template>
+        </category>
+        
+        <category>
+            <pattern>Nao</pattern>
+            <template><srai>Não</srai></template>
+        </category>
+        
+        <category>
+            <pattern>Anônimo</pattern>
+            <template><srai>Não</srai></template>
+        </category>
+        
+        <category>
+            <pattern>Anonimo</pattern>
+            <template><srai>Não</srai></template>
+        </category>
+        
+	</topic>
+	
+</aiml>

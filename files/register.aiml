@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+	
+	<topic name="CADASTRO">
+	    
+        <category>
+            <pattern>*</pattern>
+            <template>Desculpe, não compreendi o que disse.</template>
+        </category>
+        
+        <category>
+            <pattern>Cancelar</pattern>
+            <template>
+                <think>
+                    <set name="topic">CANCELADO</set>
+                </think>
+                Tudo bem, vamos pular o cadastro então.
+            </template>
+        </category>
+        
+        <category>
+            <pattern>Parar</pattern>
+            <template><srai>Cancelar</srai></template>
+        </category>
+        
+        <category>
+            <that></that>
+            <pattern>Ok</pattern>
+            <template>Ótimo! Por favor, me informe seu nome completo</template>
+        </category>
+        
+        <category>
+            <that>_ me informe seu nome completo</that>
+            <pattern>*</pattern>
+            <template>
+                <think>
+                    <set name="nomecompleto"><star/></set>
+                </think>
+                Perfeito. Por favor, me informe seu CPF
+            </template>
+        </category>
+        
+        <category>
+            <that>_ me informe seu CPF</that>
+            <pattern>*</pattern>
+            <template>
+                
+                <think>
+                    <set name="cpf"><star/></set>
+                    <set name="topic">TERMINARCADASTRO</set>
+                </think>
+                
+                Ok, chegamos ao fim. Você confirma as informações abaixo para concluir o cadastro?<split/>
+                Nome Completo: <get name="nomecompleto"/>.<split/>
+                CPF: <get name="cpf"/>. 
+                
+            </template>
+        </category>
+        
+	</topic>
+	
+	<topic name="TERMINARCADASTRO">
+	    
+	    <category>
+            <pattern>*</pattern>
+            <template>
+	            Desculpe, não compreendi sua decisão. Por favor digite "sim" ou "não" para confirmar o cadastro.
+	        </template>
+        </category>
+	    
+	    <category>
+            <pattern>Sim</pattern>
+            <template>
+                Ok, concluimos seu cadastro. Digite seu nome completo para ver suas informações.
+                <!-- Chamar Api feita para cadastro na base ao invés de learnf -->
+                <learnf>
+                    <category>
+                        <pattern><eval><get name="nomecompleto"/></eval></pattern>
+                        <template>
+                            <!-- Fazer uma lista, botar o tipo de usuário -->
+                            Seu CPF: <eval><get name="cpf"/></eval>
+                        </template>
+                    </category>
+                </learnf>
+            </template>
+        </category>
+        
+        <category>
+            <pattern>Não</pattern>
+            <template>
+                Ok. Deseja corrigir seus dados fazendo o cadastro de novo?
+            </template>
+        </category>
+        
+        <category>
+            <pattern>Nao</pattern>
+            <template><srai>Não</srai></template>
+        </category>
+        
+        <category>
+            <that>_ corrigir seus dados fazendo o cadastro de novo</that>
+            <pattern>Sim</pattern>
+            <template>
+                <think>
+                    <set name="topic">CADASTRO</set>
+                </think>
+                <srai>Ok</srai>
+            </template>
+        </category>
+        
+        <category>
+            <that>_ corrigir seus dados fazendo o cadastro de novo</that>
+            <pattern>Não</pattern>
+            <template>
+                <think>
+                    <set name="topic">CADASTRO</set>
+                </think>
+                <srai>Cancelar</srai>
+            </template>
+        </category>
+        
+	</topic>
+	
+</aiml>

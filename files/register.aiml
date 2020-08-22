@@ -2,11 +2,6 @@
 <aiml version="2.0">
 	
 	<topic name="CADASTRO">
-	    
-        <category>
-            <pattern>*</pattern>
-            <template>Desculpe, não compreendi o que disse.</template>
-        </category>
         
         <category>
             <pattern>Cancelar</pattern>
@@ -36,24 +31,36 @@
                 <think>
                     <set name="nomecompleto"><star/></set>
                 </think>
-                Perfeito. Por favor, me informe seu CPF
+                Perfeito. Por favor, me informe seu Telefone
             </template>
         </category>
         
         <category>
-            <that>_ me informe seu CPF</that>
+            <that>_ me informe seu telefone</that>
+            <pattern>*</pattern>
+            <template>
+                <think>
+                    <set name="telefone"><star/></set>
+                </think>
+                Perfeito. Por favor, me informe seu Endereco
+            </template>
+        </category>
+        
+        <category>
+            <that>_ me informe seu Endereco</that>
             <pattern>*</pattern>
             <template>
                 
                 <think>
-                    <set name="cpf"><star/></set>
+                    <set name="endereco"><star/></set>
                     <set name="topic">TERMINARCADASTRO</set>
                 </think>
                 
                 Ok, chegamos ao fim!<break/>
-                Você confirma seus dados abaixo para concluir o cadastro?<break/><break/>
+                Você confirma seus dados abaixo para concluir o cadastro?<split/>
                 Nome Completo: <get name="nomecompleto"/>.<break/>
-                CPF: <get name="cpf"/>.
+                Telefone: <get name="telefone"/>. <break/>
+                Endereço: <get name="endereco"/>.
                 
                 <button>
                     <text>Sim, as informações estão certas!</text>
@@ -88,8 +95,12 @@
                     <category>
                         <pattern><eval><get name="nomecompleto"/></eval></pattern>
                         <template>
-                            <!-- Fazer uma lista, botar o tipo de usuário -->
-                            Seu CPF: <eval><get name="cpf"/></eval>
+                            Olá <eval><get name="nome"/></eval>, temos seus dados cadastrados:<break/>
+                            <ul>
+                                <li>Nome: <eval><get name="nomecompleto"/></eval></li>
+                                <li>CPF: <eval><get name="cpf"/></eval></li>
+                                <li>Endereco: <eval><get name="endereco"/></eval></li>
+                            </ul>
                         </template>
                     </category>
                 </learnf>
